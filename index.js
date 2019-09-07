@@ -6,7 +6,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const path = require('path');
 
-// App instance
+// App instance //
 const app = express();
 
 // Set up middleware
