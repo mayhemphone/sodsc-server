@@ -52,7 +52,8 @@ router.post('/', function(req, res) {
 			// create 0 inventory record for none
 			db.Inventory.create({
 			  	merchId: merch.id,
-			  	size: 'none'
+			  	size: 'none',
+			  	count: 0
 		 	})
 
 		} else {
@@ -62,16 +63,17 @@ router.post('/', function(req, res) {
 		    async.forEach(defaultSizes, (cat, done) => {
 		      db.Inventory.create({
 		      		merchId: merch.id,
-		      		size: cat
+		      		size: cat,
+		      		count: 0
 		      })
-		      .spread((inventory, wasCreated) => {
-		        merch.addInventory(inventory)
-		        .then(() => {
-		          // res.redirect, or whatevs
-		          // console.log('done adding', cat)
-		          done()
-		        })
-		      })
+		      // .spread((inventory, wasCreated) => {
+		      //   merch.addInventory(inventory)
+		      //   .then(() => {
+		      //     // res.redirect, or whatevs
+		      //     // console.log('done adding', cat)
+		      //     done()
+		      //   })
+		      // })
 		    }, () => {
 		      // console.log('EVERYTHING is done. Now redirect or something')
 		      // res.redirect('merch/inventory')
